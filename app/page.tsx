@@ -30,9 +30,9 @@ export default function Home() {
 
     // Mejorar el scroll suave para los enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
+      anchor.addEventListener("click", function (e: Event) {
         e.preventDefault()
-        const targetId = this.getAttribute("href")
+        const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute("href")
         if (targetId) {
           const targetElement = document.querySelector(targetId)
           if (targetElement) {
