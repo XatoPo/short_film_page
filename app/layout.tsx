@@ -2,9 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Short Film',
+  description: 'Documentary about the making of a short film',
+  keywords: ['short film', 'documentary', 'making of', 'behind the scenes'],
+  authors: [{ name: 'Your Name', url: 'https://yourwebsite.com' }],
+  creator: 'Flavio Villanueva',
 }
 
 export default function RootLayout({
