@@ -36,10 +36,11 @@ export default function Home() {
         if (targetId) {
           const targetElement = document.querySelector(targetId)
           if (targetElement) {
+            const element = targetElement as HTMLElement
             gsap.to(window, {
               duration: 1,
               scrollTo: {
-                y: targetElement,
+                y: element.offsetTop, // Use offsetTop for valid scroll position
                 offsetY: 0,
               },
               ease: "power2.inOut",
