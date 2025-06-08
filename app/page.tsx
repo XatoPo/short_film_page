@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 import HeroSection from "@/components/hero-section"
 import AboutSection from "@/components/about-section"
 import CharactersSection from "@/components/characters-section"
@@ -11,7 +12,7 @@ import ExtrasSection from "@/components/extras-section"
 import NavigationBar from "@/components/floating-nav"
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin) // Register ScrollToPlugin
 }
 
 export default function Home() {
