@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import Image from "next/image"
-import { Camera, Users, Film, X, ChevronLeft, ChevronRight, ZoomIn, Heart, Loader } from "lucide-react"
+import { Camera, Users, Film, X, ChevronLeft, ChevronRight, ZoomIn, Heart } from "lucide-react"
 import { GlowCard } from "./ui/aceternity/glow-card"
 
 const galleryImages = [
@@ -99,31 +99,22 @@ const categories = [
   { id: "interviews", name: "Entrevistas", icon: Film, color: "#B6A38C" },
 ]
 
-export default function GallerySection() {
+interface GallerySectionProps {
+  imagesLoaded: boolean
+}
+
+export default function GallerySection({ imagesLoaded }: GallerySectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
-  const [imagesLoaded, setImagesLoaded] = useState<Set<string>>(new Set())
-  const [allImagesLoaded, setAllImagesLoaded] = useState(false)
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
 
   const filteredImages =
     selectedCategory === "all" ? galleryImages : galleryImages.filter((img) => img.category === selectedCategory)
 
-  // Check if all images are loaded
   useEffect(() => {
-    if (imagesLoaded.size === galleryImages.length) {
-      setAllImagesLoaded(true)
-    }
-  }, [imagesLoaded])
-
-  const handleImageLoad = (imageId: string) => {
-    setImagesLoaded((prev) => new Set([...prev, imageId]))
-  }
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !allImagesLoaded) return
+    if (typeof window === "undefined" || !imagesLoaded) return
 
     const section = sectionRef.current
     const gallery = galleryRef.current
@@ -161,7 +152,7 @@ export default function GallerySection() {
     return () => {
       gsap.killTweensOf(gallery.children)
     }
-  }, [allImagesLoaded, selectedCategory])
+  }, [imagesLoaded, selectedCategory])
 
   const handleCategoryChange = (categoryId: string) => {
     if (categoryId === selectedCategory) return
@@ -227,6 +218,20 @@ export default function GallerySection() {
     setFavorites(newFavorites)
   }
 
+  if (!imagesLoaded) {
+    return (
+      <section
+        id="galeria"
+        className="min-h-screen bg-gradient-to-br from-documentary-stone via-documentary-sand to-documentary-turquoise py-20 flex items-center justify-center"
+      >
+        <div className="text-center text-documentary-deep">
+          <div className="text-2xl font-bold mb-4">Preparando galería...</div>
+          <p className="text-documentary-deep/70">Las imágenes se están cargando</p>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <>
       <section
@@ -243,149 +248,114 @@ export default function GallerySection() {
             <div className="w-24 h-1 bg-gradient-to-r from-documentary-turquoise to-documentary-wood mx-auto rounded-full" />
           </div>
 
-          {/* Loading state */}
-          {!allImagesLoaded && (
-            <div className="flex flex-col items-center justify-center h-64 text-documentary-deep">
-              <div className="relative mb-4">
-                <Loader className="w-8 h-8 animate-spin" />
-                <div className="absolute inset-0 border-2 border-documentary-turquoise/30 rounded-full animate-ping" />
-              </div>
-              <p className="text-lg font-medium">Cargando galería...</p>
-              <p className="text-sm text-documentary-deep/70 mt-2">
-                {imagesLoaded.size} de {galleryImages.length} imágenes cargadas
-              </p>
-            </div>
-          )}
-
-          {/* Hidden images for preloading */}
-          <div className="hidden">
-            {galleryImages.map((image) => (
-              <Image
-                key={image.id}
-                src={image.image || "/placeholder.svg"}
-                alt={image.title}
-                width={1}
-                height={1}
-                onLoad={() => handleImageLoad(image.id)}
-                onError={() => handleImageLoad(image.id)} // Count errors as loaded to prevent infinite loading
-              />
+          {/* Category filters */}
+          <div className="flex justify-center gap-4 mb-12 flex-wrap">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryChange(category.id)}
+                className={`group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-500 transform hover:scale-105 ${
+                  selectedCategory === category.id
+                    ? "bg-documentary-turquoise text-white shadow-lg scale-105"
+                    : "bg-white/80 backdrop-blur-sm text-documentary-deep hover:bg-white hover:shadow-md"
+                }`}
+              >
+                <category.icon className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
+                <span className="text-sm font-medium">{category.name}</span>
+                {selectedCategory === category.id && <div className="w-2 h-2 bg-white rounded-full animate-pulse" />}
+              </button>
             ))}
           </div>
 
-          {allImagesLoaded && (
-            <>
-              {/* Category filters */}
-              <div className="flex justify-center gap-4 mb-12 flex-wrap">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => handleCategoryChange(category.id)}
-                    className={`group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-500 transform hover:scale-105 ${
-                      selectedCategory === category.id
-                        ? "bg-documentary-turquoise text-white shadow-lg scale-105"
-                        : "bg-white/80 backdrop-blur-sm text-documentary-deep hover:bg-white hover:shadow-md"
-                    }`}
-                  >
-                    <category.icon className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
-                    <span className="text-sm font-medium">{category.name}</span>
-                    {selectedCategory === category.id && (
-                      <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                    )}
-                  </button>
-                ))}
-              </div>
+          {/* Gallery grid */}
+          <div ref={galleryRef} className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+            {filteredImages.map((item, index) => (
+              <GlowCard
+                key={`${selectedCategory}-${item.id}`}
+                className="break-inside-avoid mb-6 group cursor-pointer overflow-hidden"
+              >
+                <div className="relative overflow-hidden rounded-lg bg-white" onClick={() => openLightbox(index)}>
+                  <div className="relative">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      width={400}
+                      height={item.aspectRatio === "portrait" ? 600 : 300}
+                      className="w-full h-auto transition-all duration-700 group-hover:scale-110"
+                    />
 
-              {/* Gallery grid */}
-              <div ref={galleryRef} className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-                {filteredImages.map((item, index) => (
-                  <GlowCard
-                    key={`${selectedCategory}-${item.id}`}
-                    className="break-inside-avoid mb-6 group cursor-pointer overflow-hidden"
-                  >
-                    <div className="relative overflow-hidden rounded-lg bg-white" onClick={() => openLightbox(index)}>
-                      <div className="relative">
-                        <Image
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.title}
-                          width={400}
-                          height={item.aspectRatio === "portrait" ? 600 : 300}
-                          className="w-full h-auto transition-all duration-700 group-hover:scale-110"
-                        />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        {/* Gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Hover content */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                      <p className="text-sm text-white/80 mb-3">{item.description}</p>
 
-                        {/* Hover content */}
-                        <div className="absolute inset-0 flex flex-col justify-end p-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                          <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                          <p className="text-sm text-white/80 mb-3">{item.description}</p>
-
-                          <div className="flex items-center gap-2">
-                            <button
-                              className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                openLightbox(index)
-                              }}
-                            >
-                              <ZoomIn className="w-4 h-4" />
-                            </button>
-                            <button
-                              className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                toggleFavorite(item.id)
-                              }}
-                            >
-                              <Heart
-                                className={`w-4 h-4 transition-colors ${
-                                  favorites.has(item.id) ? "fill-red-500 text-red-500" : ""
-                                }`}
-                              />
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Category badge */}
-                        <div className="absolute top-3 left-3">
-                          <span className="px-2 py-1 bg-black/50 backdrop-blur-sm text-white text-xs rounded-full">
-                            {categories.find((c) => c.id === item.category)?.name}
-                          </span>
-                        </div>
-
-                        {/* Favorite indicator */}
-                        {favorites.has(item.id) && (
-                          <div className="absolute top-3 right-3">
-                            <Heart className="w-5 h-5 fill-red-500 text-red-500" />
-                          </div>
-                        )}
+                      <div className="flex items-center gap-2">
+                        <button
+                          className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            openLightbox(index)
+                          }}
+                        >
+                          <ZoomIn className="w-4 h-4" />
+                        </button>
+                        <button
+                          className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            toggleFavorite(item.id)
+                          }}
+                        >
+                          <Heart
+                            className={`w-4 h-4 transition-colors ${
+                              favorites.has(item.id) ? "fill-red-500 text-red-500" : ""
+                            }`}
+                          />
+                        </button>
                       </div>
                     </div>
-                  </GlowCard>
-                ))}
-              </div>
 
-              {/* Gallery stats */}
-              <div className="mt-16 text-center">
-                <div className="inline-flex items-center gap-6 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-documentary-deep">{filteredImages.length}</div>
-                    <div className="text-sm text-documentary-deep/70">Fotos</div>
-                  </div>
-                  <div className="w-px h-8 bg-documentary-deep/20" />
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-documentary-deep">{favorites.size}</div>
-                    <div className="text-sm text-documentary-deep/70">Favoritas</div>
-                  </div>
-                  <div className="w-px h-8 bg-documentary-deep/20" />
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-documentary-deep">{categories.length - 1}</div>
-                    <div className="text-sm text-documentary-deep/70">Categorías</div>
+                    {/* Category badge */}
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2 py-1 bg-black/50 backdrop-blur-sm text-white text-xs rounded-full">
+                        {categories.find((c) => c.id === item.category)?.name}
+                      </span>
+                    </div>
+
+                    {/* Favorite indicator */}
+                    {favorites.has(item.id) && (
+                      <div className="absolute top-3 right-3">
+                        <Heart className="w-5 h-5 fill-red-500 text-red-500" />
+                      </div>
+                    )}
                   </div>
                 </div>
+              </GlowCard>
+            ))}
+          </div>
+
+          {/* Gallery stats */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-6 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-documentary-deep">{filteredImages.length}</div>
+                <div className="text-sm text-documentary-deep/70">Fotos</div>
               </div>
-            </>
-          )}
+              <div className="w-px h-8 bg-documentary-deep/20" />
+              <div className="text-center">
+                <div className="text-2xl font-bold text-documentary-deep">{favorites.size}</div>
+                <div className="text-sm text-documentary-deep/70">Favoritas</div>
+              </div>
+              <div className="w-px h-8 bg-documentary-deep/20" />
+              <div className="text-center">
+                <div className="text-2xl font-bold text-documentary-deep">{categories.length - 1}</div>
+                <div className="text-sm text-documentary-deep/70">Categorías</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

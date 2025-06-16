@@ -1,26 +1,35 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { gsap } from "gsap"
 
 interface MarineLoaderProps {
+  progress: number
+  loadedImages: number
+  totalImages: number
+  totalCached: number
   onComplete?: () => void
 }
 
-export function MarineLoader({ onComplete }: MarineLoaderProps) {
-  const [loadingText, setLoadingText] = useState("Navegando...")
-  const [progress, setProgress] = useState(0)
+export function MarineLoader({ progress, loadedImages, totalImages, totalCached, onComplete }: MarineLoaderProps) {
+  const [loadingText, setLoadingText] = useState("Preparando navegación...")
+  const [isCompleting, setIsCompleting] = useState(false)
+  const hasCompleted = useRef(false)
 
   const loadingTexts = [
-    "Navegando hacia el puerto...",
-    "Preparando las velas...",
+    "Preparando navegación...",
     "Cargando herramientas artesanales...",
-    "Ajustando las cuerdas...",
+    "Ajustando las velas...",
     "Revisando la madera noble...",
-    "Listo para zarpar...",
+    "Preparando las cuerdas...",
+    "Navegando hacia el puerto...",
+    "¡Listo para zarpar!",
   ]
 
   useEffect(() => {
+    // Solo inicializar animaciones una vez
+    if (hasCompleted.current) return
+
     // Animate boat
     gsap.to(".boat", {
       x: "+=20",
@@ -55,31 +64,28 @@ export function MarineLoader({ onComplete }: MarineLoaderProps) {
       yoyo: true,
       ease: "power2.inOut",
     })
+  }, [])
 
-    // Progress simulation with realistic loading
-    let currentProgress = 0
-    const interval = setInterval(() => {
-      // Simulate realistic loading with variable speeds
-      const increment = Math.random() * 8 + 2
-      currentProgress = Math.min(currentProgress + increment, 100)
-      setProgress(currentProgress)
+  useEffect(() => {
+    if (hasCompleted.current) return
 
-      // Change loading text
-      const textIndex = Math.floor((currentProgress / 100) * loadingTexts.length)
-      if (textIndex < loadingTexts.length) {
-        setLoadingText(loadingTexts[textIndex])
-      }
+    // Update loading text based on progress
+    const textIndex = Math.min(Math.floor((progress / 100) * loadingTexts.length), loadingTexts.length - 1)
+    setLoadingText(loadingTexts[textIndex])
 
-      if (currentProgress >= 100) {
-        clearInterval(interval)
-        setTimeout(() => {
-          onComplete?.()
-        }, 800)
-      }
-    }, 200)
+    // Call onComplete when fully loaded
+    if (progress >= 100 && !isCompleting && onComplete) {
+      setIsCompleting(true)
+      hasCompleted.current = true
 
-    return () => clearInterval(interval)
-  }, [onComplete])
+      // Cleanup animations before completing
+      gsap.killTweensOf(".boat, .wave, .anchor, .rope")
+
+      setTimeout(() => {
+        onComplete()
+      }, 800)
+    }
+  }, [progress, onComplete, isCompleting])
 
   return (
     <div className="fixed inset-0 bg-gradient-to-b from-documentary-deep via-documentary-turquoise to-documentary-wood flex items-center justify-center z-50">
@@ -156,8 +162,17 @@ export function MarineLoader({ onComplete }: MarineLoaderProps) {
           </div>
           <div className="flex justify-between items-center mt-2">
             <span className="text-white/70 text-sm">{Math.round(progress)}%</span>
-            <span className="text-white/70 text-sm">Cargando...</span>
+            <span className="text-white/70 text-sm">
+              {loadedImages}/{totalImages} imágenes
+            </span>
           </div>
+
+          {/* Cache info */}
+          {totalCached > 0 && (
+            <div className="text-center mt-2">
+              <span className="text-white/50 text-xs">{totalCached} imágenes en caché</span>
+            </div>
+          )}
         </div>
 
         {/* Loading text with typewriter effect */}

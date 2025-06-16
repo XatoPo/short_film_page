@@ -175,29 +175,29 @@ export default function AboutSection() {
 
           <div className="grid grid-cols-2 gap-4">
             <Image
-              src="/placeholder.svg?height=200&width=200"
-              alt="Grabando documental"
+              src="/team/photographer.jpg"
+              alt="Fotógrafo documentando el proceso"
               width={200}
               height={200}
               className="rounded-lg shadow-lg"
             />
             <Image
-              src="/placeholder.svg?height=200&width=200"
-              alt="Entrevista artesano"
+              src="/team/interview-subject.jpg"
+              alt="Entrevista con participante"
               width={200}
               height={200}
               className="rounded-lg shadow-lg"
             />
             <Image
-              src="/placeholder.svg?height=200&width=200"
-              alt="Taller trabajo"
+              src="/team/interviewee.jpg"
+              alt="Artesano compartiendo conocimiento"
               width={200}
               height={200}
               className="rounded-lg shadow-lg"
             />
             <Image
-              src="/placeholder.svg?height=200&width=200"
-              alt="Equipo grabación"
+              src="/team/filming-crew.jpg"
+              alt="Equipo de grabación trabajando"
               width={200}
               height={200}
               className="rounded-lg shadow-lg"
