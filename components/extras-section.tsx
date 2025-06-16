@@ -2,36 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
-import { Anchor, Compass, Ship, Waves, MapPin, X } from "lucide-react"
+import { MapPin, X } from "lucide-react"
 import { AnimatedTooltip } from "./ui/aceternity/animated-tooltip"
-import { GlowCard } from "./ui/aceternity/glow-card"
-
-const funFacts = [
-  {
-    icon: Ship,
-    title: "Tipos de Embarcaciones",
-    description: "Existen más de 15 tipos diferentes de embarcaciones tradicionales en la región.",
-    details: "Cada tipo tiene características específicas según su uso: pesca, transporte o recreación.",
-  },
-  {
-    icon: Anchor,
-    title: "Maderas Utilizadas",
-    description: "Se utilizan principalmente cedro, caoba y roble para diferentes partes del barco.",
-    details: "La selección de la madera es crucial para la durabilidad y resistencia de la embarcación.",
-  },
-  {
-    icon: Compass,
-    title: "Técnicas Ancestrales",
-    description: "Las técnicas de construcción se han transmitido por más de 200 años.",
-    details: "Cada maestro artesano aporta su propio estilo y conocimientos únicos.",
-  },
-  {
-    icon: Waves,
-    title: "Impacto Cultural",
-    description: "La construcción naval es parte fundamental de la identidad cultural costera.",
-    details: "Estas tradiciones conectan a las comunidades con su herencia marítima.",
-  },
-]
 
 const harborPoints = [
   {
@@ -41,7 +13,7 @@ const harborPoints = [
     title: "Muelle Principal",
     description: "Donde se construyen las embarcaciones más grandes",
     details: "Este muelle ha sido el corazón de la actividad naval durante más de 100 años.",
-    color: "#1D8FF5",
+    color: "#5FB4A4", // Turquesa suave
   },
   {
     id: "workshop",
@@ -50,7 +22,7 @@ const harborPoints = [
     title: "Taller de Kike",
     description: "El corazón de la construcción artesanal",
     details: "Cada herramienta tiene su historia y propósito específico en la construcción naval.",
-    color: "#1DF5E6",
+    color: "#B6A38C", // Madera lavada
   },
   {
     id: "storage",
@@ -59,7 +31,7 @@ const harborPoints = [
     title: "Almacén de Maderas",
     description: "Donde se curan las maderas nobles",
     details: "La madera debe curarse durante años antes de estar lista para su uso.",
-    color: "#6FA9F5",
+    color: "#AAB0B6", // Gris piedra
   },
   {
     id: "launch",
@@ -68,13 +40,12 @@ const harborPoints = [
     title: "Zona de Botadura",
     description: "Donde las embarcaciones tocan el agua por primera vez",
     details: "Una tradición que se celebra con toda la comunidad presente.",
-    color: "#4A1DF5",
+    color: "#2F4E5C", // Azul profundo
   },
 ]
 
 export default function ExtrasSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const factsRef = useRef<HTMLDivElement>(null)
   const harborRef = useRef<HTMLDivElement>(null)
   const [selectedPoint, setSelectedPoint] = useState<(typeof harborPoints)[0] | null>(null)
 
@@ -82,30 +53,9 @@ export default function ExtrasSection() {
     if (typeof window === "undefined") return
 
     const section = sectionRef.current
-    const facts = factsRef.current
     const harbor = harborRef.current
 
-    if (!section || !facts || !harbor) return
-
-    // Animate fact cards
-    gsap.fromTo(
-      facts.children,
-      { opacity: 0, y: 50, rotationY: 45 },
-      {
-        opacity: 1,
-        y: 0,
-        rotationY: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: facts,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      },
-    )
+    if (!section || !harbor) return
 
     // Animate harbor section
     gsap.fromTo(
@@ -179,28 +129,17 @@ export default function ExtrasSection() {
 
   return (
     <>
-      <section id="extras" ref={sectionRef} className="min-h-screen bg-gradient-to-b from-[#1D37F5] to-[#6FA9F5] py-20">
+      <section
+        id="extras"
+        ref={sectionRef}
+        className="min-h-screen bg-gradient-to-b from-documentary-turquoise to-documentary-deep py-20"
+      >
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">¿Sabías qué?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Conociendo el Taller</h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Datos fascinantes sobre la construcción naval artesanal
+              Explora cada rincón donde nacen las embarcaciones tradicionales
             </p>
-          </div>
-
-          <div ref={factsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {funFacts.map((fact, index) => (
-              <GlowCard key={index} className="h-full">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 cursor-pointer group h-full">
-                  <div className="mb-4 flex justify-center">
-                    <fact.icon className="w-12 h-12 text-[#1DF5E6] group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{fact.title}</h3>
-                  <p className="text-white/80 mb-4">{fact.description}</p>
-                  <p className="text-white/60 text-sm">{fact.details}</p>
-                </div>
-              </GlowCard>
-            ))}
           </div>
 
           {/* Interactive Harbor Section */}

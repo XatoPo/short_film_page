@@ -14,73 +14,57 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: 239 231 220; /* Arena cálida como fondo */
+    --foreground: 47 78 92; /* Azul profundo para texto */
+    --card: 239 231 220;
+    --card-foreground: 47 78 92;
+    --popover: 239 231 220;
+    --popover-foreground: 47 78 92;
+    --primary: 95 180 164; /* Turquesa suave */
+    --primary-foreground: 255 255 255;
+    --secondary: 182 163 140; /* Madera lavada */
+    --secondary-foreground: 47 78 92;
+    --muted: 170 176 182; /* Gris piedra */
+    --muted-foreground: 47 78 92;
+    --accent: 95 180 164;
+    --accent-foreground: 255 255 255;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: 170 176 182;
+    --input: 170 176 182;
+    --ring: 95 180 164;
+    --chart-1: 95 180 164;
+    --chart-2: 182 163 140;
+    --chart-3: 170 176 182;
+    --chart-4: 47 78 92;
+    --chart-5: 239 231 220;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 47 78 92; /* Azul profundo para modo oscuro */
+    --foreground: 239 231 220;
+    --card: 47 78 92;
+    --card-foreground: 239 231 220;
+    --popover: 47 78 92;
+    --popover-foreground: 239 231 220;
+    --primary: 95 180 164;
+    --primary-foreground: 47 78 92;
+    --secondary: 182 163 140;
+    --secondary-foreground: 239 231 220;
+    --muted: 170 176 182;
+    --muted-foreground: 239 231 220;
+    --accent: 95 180 164;
+    --accent-foreground: 47 78 92;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 170 176 182;
+    --input: 170 176 182;
+    --ring: 95 180 164;
+    --chart-1: 95 180 164;
+    --chart-2: 182 163 140;
+    --chart-3: 170 176 182;
+    --chart-4: 239 231 220;
+    --chart-5: 47 78 92;
   }
 }
 
@@ -105,19 +89,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Mejoras para los puntos interactivos */
-.interactive-point {
-  z-index: 20;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: absolute;
-}
-
-.interactive-point:hover {
-  z-index: 30;
-  filter: brightness(1.2);
-}
-
-/* Animación de ripple más suave */
+/* Enhanced animations */
 @keyframes ripple {
   0% {
     transform: scale(1);
@@ -127,6 +99,66 @@ body {
     transform: scale(2.5);
     opacity: 0;
   }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(95, 180, 164, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(95, 180, 164, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(239, 231, 220, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5fb4a4, #b6a38c);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4c9083, #9a8a6f);
+}
+
+/* Enhanced interactive elements */
+.interactive-point {
+  z-index: 20;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+}
+
+.interactive-point:hover {
+  z-index: 30;
+  filter: brightness(1.2);
+  animation: pulse-glow 2s infinite;
 }
 
 .interactive-point::before {
@@ -139,7 +171,117 @@ body {
   z-index: -1;
 }
 
-/* Asegurar que los puntos estén siempre visibles */
 .interactive-point {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating elements animation */
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Image hover effects */
+.image-hover-effect {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-hover-effect:hover {
+  transform: scale(1.05) rotate(1deg);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(135deg, #5fb4a4, #b6a38c, #2f4e5c);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Loading animations */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Parallax container */
+.parallax-container {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Enhanced card animations */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-3d:hover {
+  transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+}
+
+/* Masonry layout improvements */
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.masonry-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal entrance animations */
+.modal-backdrop {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Typography enhancements */
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid #5fb4a4;
+  white-space: nowrap;
+  animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #5fb4a4;
+  }
 }

@@ -26,31 +26,31 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#1D8FF5", // Azul claro motivacional
-          50: "#E6F3FF",
-          100: "#CCE7FF",
-          200: "#99CFFF",
-          300: "#66B7FF",
-          400: "#339FFF",
-          500: "#1D8FF5",
-          600: "#0066CC",
-          700: "#004C99",
-          800: "#003366",
-          900: "#001933",
+          DEFAULT: "#5FB4A4", // Turquesa suave
+          50: "#F0F9F7",
+          100: "#E1F3F0",
+          200: "#C3E7E1",
+          300: "#A5DBD2",
+          400: "#87CFC3",
+          500: "#5FB4A4",
+          600: "#4C9083",
+          700: "#396C62",
+          800: "#264841",
+          900: "#132420",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#1DF5E6", // Turquesa suave
-          50: "#E6FFFE",
-          100: "#CCFFFC",
-          200: "#99FFF9",
-          300: "#66FFF6",
-          400: "#33FFF3",
-          500: "#1DF5E6",
-          600: "#00CCB8",
-          700: "#00998A",
-          800: "#00665C",
-          900: "#00332E",
+          DEFAULT: "#EFE7DC", // Arena cálida
+          50: "#FEFCFA",
+          100: "#FDF9F5",
+          200: "#FBF3EB",
+          300: "#F7EDE1",
+          400: "#F3E7D7",
+          500: "#EFE7DC",
+          600: "#BFB9B0",
+          700: "#8F8B84",
+          800: "#5F5C58",
+          900: "#2F2E2C",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -73,12 +73,12 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        marine: {
-          light: "#1D8FF5", // Azul claro motivacional
-          DEFAULT: "#1D37F5", // Azul profundo
-          dark: "#4A1DF5", // Azul violáceo intenso
-          turquoise: "#1DF5E6", // Turquesa suave
-          sky: "#6FA9F5", // Azul celeste
+        documentary: {
+          turquoise: "#5FB4A4", // Turquesa suave
+          sand: "#EFE7DC", // Arena cálida
+          wood: "#B6A38C", // Madera lavada
+          stone: "#AAB0B6", // Gris piedra
+          deep: "#2F4E5C", // Azul profundo
         },
       },
       borderRadius: {

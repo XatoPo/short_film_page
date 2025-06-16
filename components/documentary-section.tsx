@@ -14,7 +14,7 @@ const interactivePoints = [
     title: "Pintura Tradicional",
     description: "Las técnicas de pintura utilizadas han sido transmitidas de generación en generación.",
     action: "documentary",
-    color: "bg-gradient-to-r from-amber-400 to-orange-500",
+    color: "bg-gradient-to-r from-documentary-turquoise to-documentary-wood",
   },
   {
     id: "wood",
@@ -23,7 +23,7 @@ const interactivePoints = [
     title: "Madera Noble",
     description: "Se utiliza madera de cedro y caoba, seleccionada cuidadosamente por su resistencia.",
     action: "info",
-    color: "bg-gradient-to-r from-emerald-400 to-teal-500",
+    color: "bg-gradient-to-r from-documentary-wood to-documentary-stone",
   },
   {
     id: "tools",
@@ -32,7 +32,7 @@ const interactivePoints = [
     title: "Herramientas Artesanales",
     description: "Cada herramienta tiene una función específica y muchas son hechas a mano.",
     action: "info",
-    color: "bg-gradient-to-r from-purple-400 to-pink-500",
+    color: "bg-gradient-to-r from-documentary-stone to-documentary-sand",
   },
   {
     id: "bow",
@@ -41,7 +41,7 @@ const interactivePoints = [
     title: "Proa del Barco",
     description: "La forma de la proa determina la velocidad y estabilidad de la embarcación.",
     action: "info",
-    color: "bg-gradient-to-r from-blue-400 to-cyan-500",
+    color: "bg-gradient-to-r from-documentary-sand to-documentary-turquoise",
   },
 ]
 
@@ -136,7 +136,7 @@ export default function DocumentarySection() {
       <section
         id="documental"
         ref={sectionRef}
-        className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 py-12 md:py-20 flex items-center"
+        className="min-h-screen bg-gradient-to-br from-documentary-deep via-documentary-turquoise to-documentary-wood py-12 md:py-20 flex items-center"
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-8 md:mb-16">
@@ -152,8 +152,8 @@ export default function DocumentarySection() {
           <div ref={boatRef} className="relative max-w-5xl mx-auto mb-8 md:mb-16">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/placeholder.svg?height=600&width=1000"
-                alt="Embarcación Artesanal"
+                src="/boats-harbor.jpg"
+                alt="Embarcaciones Artesanales en el Puerto"
                 width={1000}
                 height={600}
                 className="w-full h-auto"
@@ -191,17 +191,17 @@ export default function DocumentarySection() {
               {
                 title: "Making Of",
                 description: "Detrás de cámaras del documental",
-                gradient: "from-rose-500 to-pink-600",
+                gradient: "from-documentary-turquoise to-documentary-wood",
               },
               {
                 title: "Entrevista",
                 description: "Director y productora hablan del proyecto",
-                gradient: "from-blue-500 to-cyan-600",
+                gradient: "from-documentary-wood to-documentary-stone",
               },
               {
                 title: "Podcast",
                 description: "Conversaciones con los artesanos",
-                gradient: "from-emerald-500 to-teal-600",
+                gradient: "from-documentary-stone to-documentary-deep",
               },
             ].map((item, index) => (
               <DraggableCard key={index} className="w-full">

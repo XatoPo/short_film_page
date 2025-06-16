@@ -11,58 +11,58 @@ const characters = [
     id: "kike",
     name: "Kike",
     title: "Maestro Artesano",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/placeholder.svg?height=300&width=300", // Se actualizará con la foto real
     biography:
       "Kike es un maestro artesano con más de 30 años de experiencia en la construcción de embarcaciones tradicionales. Su taller es un santuario donde se preservan técnicas ancestrales.",
     hasWebsodio: true,
     websodioUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     achievements: ["Maestro Artesano Nacional", "Premio a la Tradición Naval", "Mentor de 15 aprendices"],
-    color: "#1D8FF5",
+    color: "#5FB4A4", // Turquesa suave
   },
   {
     id: "ricardo",
     name: "Ricardo",
     title: "Veterano de Marina",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/ricardo-portrait.jpg", // Foto real de Ricardo
     biography:
       "Ricardo sirvió en la marina durante 25 años y ahora comparte su conocimiento sobre navegación y mantenimiento de embarcaciones con las nuevas generaciones.",
     hasWebsodio: true,
     websodioUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     achievements: ["Capitán de Marina", "Instructor Naval", "Experto en navegación tradicional"],
-    color: "#1DF5E6",
+    color: "#B6A38C", // Madera lavada
   },
   {
     id: "david",
     name: "David",
     title: "Joven Aprendiz",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/placeholder.svg?height=300&width=300", // Se actualizará con la foto real
     biography:
       "David representa la nueva generación que busca aprender y preservar estas tradiciones. Su pasión por el oficio es contagiosa.",
     hasWebsodio: true,
     websodioUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     achievements: ["Mejor Aprendiz 2023", "Innovador en técnicas mixtas", "Embajador juvenil"],
-    color: "#4A1DF5",
+    color: "#2F4E5C", // Azul profundo
   },
   {
     id: "especialista",
     name: "Dr. Especialista",
     title: "Historiador Naval",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/placeholder.svg?height=300&width=300", // Cambiar por nueva foto
     biography:
       "Experto en historia naval y tradiciones marítimas. Aporta el contexto histórico y cultural necesario para entender la importancia de estas tradiciones.",
     hasWebsodio: false,
     achievements: ["PhD en Historia Marítima", "Autor de 5 libros", "Consultor UNESCO"],
-    color: "#6FA9F5",
+    color: "#AAB0B6", // Gris piedra
   },
   {
     id: "economista",
     name: "Economista",
     title: "Analista Económico",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/placeholder.svg?height=300&width=300", // Cambiar por nueva foto
     biography: "Analiza el impacto económico y social de la industria artesanal naval en las comunidades costeras.",
     hasWebsodio: false,
     achievements: ["Especialista en Economía Azul", "Consultor BID", "Investigador principal"],
-    color: "#1D37F5",
+    color: "#EFE7DC", // Arena cálida
   },
 ]
 
@@ -115,7 +115,7 @@ export default function CharactersSection() {
       <section
         id="personajes"
         ref={sectionRef}
-        className="min-h-screen bg-gradient-to-b from-[#1DF5E6] to-[#4A1DF5] py-20"
+        className="min-h-screen bg-gradient-to-b from-documentary-wood to-documentary-stone py-20"
       >
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">

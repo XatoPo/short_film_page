@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type React from "react"
+import type { Metadata } from "next"
+import "./globals.css"
 
 export const metadata: Metadata = {
-  title: 'Short Film',
-  description: 'Documentary about the making of a short film',
-  keywords: ['short film', 'documentary', 'making of', 'behind the scenes'],
-  authors: [{ name: 'Your Name', url: 'https://yourwebsite.com' }],
-  creator: 'Flavio Villanueva',
+  title: "Short Film",
+  description: "Documentary about the making of a short film",
+  keywords: ["short film", "documentary", "making of", "behind the scenes"],
+  authors: [{ name: "Your Name", url: "https://yourwebsite.com" }],
+  creator: "Flavio Villanueva",
 }
 
 export default function RootLayout({
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[#1D37F5]">{children}</body>
+      <body className="bg-documentary-sand">{children}</body>
     </html>
   )
 }

@@ -54,16 +54,14 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section id="hero" ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+    <section
+      id="hero"
+      ref={sectionRef}
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-documentary-deep to-documentary-turquoise"
+    >
+      {/* Background Image with Team Photo */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Taller de Kike - Workshop"
-          fill
-          className="object-cover"
-          priority
-        />
+        <Image src="/team-photo.jpg" alt="Foto del equipo en el barco" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
       </div>
 
@@ -79,20 +77,23 @@ export default function HeroSection() {
               className="mx-auto"
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-wide">Artesanos del Mar</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-wide">Donde nacen los barcos</h1>
           <p className="text-xl md:text-2xl text-white/90 font-light">Un documental sobre la tradición naval</p>
         </div>
       </Spotlight>
 
       {/* Productora Logo */}
       <div className="absolute top-8 right-8 z-20">
-        <Image
-          src="/placeholder.svg?height=80&width=120"
-          alt="Logo Productora"
-          width={120}
-          height={80}
-          className="opacity-90"
-        />
+        <div className="text-white text-right">
+          <Image
+            src="/placeholder.svg?height=80&width=120"
+            alt="Logo Productora"
+            width={120}
+            height={80}
+            className="mx-auto mb-2"
+          />
+          <p className="text-sm opacity-75">Una producción colaborativa</p>
+        </div>
       </div>
 
       {/* Social Media Icons */}
