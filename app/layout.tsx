@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   keywords: ["short film", "documentary", "making of", "behind the scenes"],
   authors: [{ name: "Your Name", url: "https://yourwebsite.com" }],
   creator: "Flavio Villanueva",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({

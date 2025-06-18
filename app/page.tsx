@@ -9,7 +9,7 @@ import AboutSection from "@/components/about-section"
 import CharactersSection from "@/components/characters-section"
 import DocumentarySection from "@/components/documentary-section"
 import GallerySection from "@/components/gallery-section"
-import ExtrasSection from "@/components/extras-section"
+import HarborSection from "@/components/harbor-section"
 import FunFactsSection from "@/components/fun-facts-section"
 import NavigationBar from "@/components/floating-nav"
 import { MarineLoader } from "@/components/ui/marine-loader"
@@ -27,26 +27,34 @@ export default function Home() {
     () => [
       // Hero section
       "/team-photo.jpg",
-      "/placeholder.svg?height=200&width=400", // Logo
-      "/placeholder.svg?height=80&width=120", // Productora logo
+      "/logo-documental.png",
+      "/hero-background.jpg",
 
       // About section - team photos
-      "/team/photographer.jpg",
-      "/team/interview-subject.jpg",
-      "/team/interviewee.jpg",
-      "/team/filming-crew.jpg",
+      "/team/director.jpg",
+      "/team/editor.jpg",
+      "/team/productora.jpg",
+      "/team/sonidista.jpg",
+      "/team/camarografo1.jpg",
+      "/team/camarografo2.jpg",
+      "/team/asistente.jpg",
+      "/team/director-fotografia.jpg",
+      "/conocenos-background.jpg",
+      "/mission-vision-background.jpg",
 
       // Characters section
-      "/placeholder.svg?height=300&width=300", // Kike
-      "/ricardo-portrait.jpg", // Ricardo
-      "/placeholder.svg?height=300&width=300", // David
-      "/placeholder.svg?height=300&width=300", // Especialista
-      "/placeholder.svg?height=300&width=300", // Economista
+      "/characters/kike.jpg",
+      "/ricardo-portrait.jpg",
+      "/characters/david.jpg",
+      "/placeholder.svg?height=300&width=300", // Brando
+      "/placeholder.svg?height=300&width=300", // Mia
+      "/characters-background.jpg",
 
       // Documentary section
       "/boats-harbor.jpg",
+      "/gallery/kike-construction.jpg",
 
-      // Gallery section
+      // Gallery section - TODAS LAS FOTOS
       "/gallery/coastal-view.jpg",
       "/gallery/artistic-portrait.jpg",
       "/gallery/filming-boats.jpg",
@@ -57,9 +65,22 @@ export default function Home() {
       "/gallery/behind-scenes.jpg",
       "/gallery/harbor-panorama.jpg",
       "/gallery/village-overlook.jpg",
+      "/gallery/kike-construction.jpg",
+      "/gallery/colorky-boat.jpg",
+      "/gallery/kike-workshop.jpg",
+      "/gallery/worker-tools.jpg",
+      "/gallery/boat-underneath.jpg",
+      "/gallery/harbor-aerial.jpg",
+      "/gallery/two-boats-varadero.jpg",
+      "/gallery/kike-portrait.jpg",
+      "/gallery/kike-workshop-2.jpg",
 
-      // Extras section
-      "/placeholder.svg?height=400&width=800", // Harbor view
+      // Harbor/Taller section
+      "/workshop/harbor-real.jpg",
+      "/workshop/wood-selection.jpg",
+      "/workshop/caulking-space.jpg",
+      "/workshop/david-painting.jpg",
+      "/workshop/kike-workshop.jpg",
     ],
     [],
   )
@@ -160,7 +181,7 @@ export default function Home() {
       <CharactersSection />
       <DocumentarySection />
       <GallerySection imagesLoaded={true} />
-      <ExtrasSection />
+      <HarborSection />
       <FunFactsSection />
     </main>
   )
