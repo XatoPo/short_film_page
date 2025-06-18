@@ -9,60 +9,64 @@ import { GlowCard } from "./ui/aceternity/glow-card"
 const characters = [
   {
     id: "kike",
-    name: "Kike",
-    title: "Maestro Artesano",
-    image: "/placeholder.svg?height=300&width=300", // Se actualizará con la foto real
+    name: "Enrique Rejas Olaguibel",
+    title: "Artesano Naval",
+    image: "/characters/kike.jpg",
     biography:
-      "Kike es un maestro artesano con más de 30 años de experiencia en la construcción de embarcaciones tradicionales. Su taller es un santuario donde se preservan técnicas ancestrales.",
+      "Enrique es un maestro artesano con más de 15 años de experiencia en la construcción de embarcaciones tradicionales. Su taller es un santuario donde se preservan técnicas ancestrales.",
     hasWebsodio: true,
     websodioUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    achievements: ["Maestro Artesano Nacional", "Premio a la Tradición Naval", "Mentor de 15 aprendices"],
+    achievements: ["Maestro artesano de su propio taller", "15 años de experiencia en este arte"],
     color: "#5FB4A4", // Turquesa suave
   },
   {
     id: "ricardo",
-    name: "Ricardo",
-    title: "Veterano de Marina",
+    name: "Ricardo Rueda",
+    title: "Dueño artesano",
     image: "/ricardo-portrait.jpg", // Foto real de Ricardo
     biography:
-      "Ricardo sirvió en la marina durante 25 años y ahora comparte su conocimiento sobre navegación y mantenimiento de embarcaciones con las nuevas generaciones.",
+      "Ricardo es dueño de su propio taller artesanal y comparte su conocimiento sobre construcción y mantenimiento de embarcaciones con las nuevas generaciones.",
     hasWebsodio: true,
     websodioUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    achievements: ["Capitán de Marina", "Instructor Naval", "Experto en navegación tradicional"],
+    achievements: [
+      "Capitán de marina especializado en el uso estrategias para el combate",
+      "Dueño del varadero junto a su hermano",
+    ],
     color: "#B6A38C", // Madera lavada
   },
   {
     id: "david",
-    name: "David",
-    title: "Joven Aprendiz",
-    image: "/placeholder.svg?height=300&width=300", // Se actualizará con la foto real
+    name: "David Carrillo",
+    title: "Pintor artesano",
+    image: "/characters/david.jpg",
     biography:
-      "David representa la nueva generación que busca aprender y preservar estas tradiciones. Su pasión por el oficio es contagiosa.",
+      "David Carrillo es un pintor artesano con más de 5 años de experiencia. Al principio su vocación era la de un pintor normal, pero decidió tomar el siguiente paso y empezar con la pintura artesana naval. Ahí, se encarga de proteger y embellecer embarcaciones a través de la aplicación de pintura y otros recubrimientos.",
     hasWebsodio: true,
     websodioUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    achievements: ["Mejor Aprendiz 2023", "Innovador en técnicas mixtas", "Embajador juvenil"],
+    achievements: ["Pintor profesional", "Más de 5 años de experiencias pintando y decorando barcos artesanales"],
     color: "#2F4E5C", // Azul profundo
   },
   {
-    id: "especialista",
-    name: "Dr. Especialista",
-    title: "Historiador Naval",
-    image: "/placeholder.svg?height=300&width=300", // Cambiar por nueva foto
+    id: "brando",
+    name: "Lic. Brando Tarrillo",
+    title: "Abogado",
+    image: "/placeholder.svg?height=300&width=300", // Se actualizará con nueva foto
     biography:
-      "Experto en historia naval y tradiciones marítimas. Aporta el contexto histórico y cultural necesario para entender la importancia de estas tradiciones.",
+      "Brando Tarrillo es el abogado y uno de nuestros especialistas involucrados en nuestro documental. Su aporte nos hace entender un poco más sobre las normas y ayudas legales que estos artesanos requieren para ser el sustento de sus familias.",
     hasWebsodio: false,
-    achievements: ["PhD en Historia Marítima", "Autor de 5 libros", "Consultor UNESCO"],
+    achievements: ["Especialista en Derecho Marítimo y Pesquero", "Asesor legal en formalización de embarcaciones"],
     color: "#AAB0B6", // Gris piedra
   },
   {
-    id: "economista",
-    name: "Economista",
-    title: "Analista Económico",
-    image: "/placeholder.svg?height=300&width=300", // Cambiar por nueva foto
-    biography: "Analiza el impacto económico y social de la industria artesanal naval en las comunidades costeras.",
+    id: "mia",
+    name: "Mia Mingo",
+    title: "Economista",
+    image: "/placeholder.svg?height=300&width=300", // Se actualizará con nueva foto
+    biography:
+      "Mia es nuestra segunda especialista que nos acompaña en este documental. Ella nos da sus grandes aportes y nos adentra al tema desde un punto crítico como lo es el económico. Nos dará sus puntos de vistas y como estos artesanos navales son un hilo conductor a la sostenibilidad de Pucusana, ya que los pescadores dependen de sus barcos y sin barcos, no existiría pesca.",
     hasWebsodio: false,
-    achievements: ["Especialista en Economía Azul", "Consultor BID", "Investigador principal"],
-    color: "#EFE7DC", // Arena cálida
+    achievements: ["Licenciada en economía en la universidad de Lima"],
+    color: "#2F4E5C", // Azul profundo para mejor contraste
   },
 ]
 
@@ -115,9 +119,18 @@ export default function CharactersSection() {
       <section
         id="personajes"
         ref={sectionRef}
-        className="min-h-screen bg-gradient-to-b from-documentary-wood to-documentary-stone py-20"
+        className="min-h-screen py-20 relative"
+        style={{
+          backgroundImage: `url('/characters-background.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
       >
-        <div className="container mx-auto px-6">
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-documentary-wood/80 via-documentary-stone/70 to-documentary-deep/80" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Personajes</h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
@@ -135,7 +148,8 @@ export default function CharactersSection() {
                       src={character.image || "/placeholder.svg"}
                       alt={character.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                      style={{ objectPosition: character.id === "ricardo" ? "center 20%" : "center" }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -192,6 +206,7 @@ export default function CharactersSection() {
                       width={400}
                       height={500}
                       className="w-full"
+                      style={{ objectPosition: selectedCharacter.id === "ricardo" ? "center 20%" : "center" }}
                     />
                     <div className="absolute inset-0 opacity-20" style={{ backgroundColor: selectedCharacter.color }} />
                   </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { Anchor, Film, Info, Ship, Users, Camera, Lightbulb } from "lucide-react"
+import { Anchor, Film, Info, Users, Camera, Lightbulb, Wrench } from "lucide-react"
 import { FloatingNav } from "./ui/aceternity/floating-navbar"
 
 export default function NavigationBar() {
@@ -11,7 +11,7 @@ export default function NavigationBar() {
       icon: <Anchor className="h-4 w-4" />,
     },
     {
-      name: "Nosotros",
+      name: "Conócenos",
       link: "#nosotros",
       icon: <Info className="h-4 w-4" />,
     },
@@ -32,8 +32,8 @@ export default function NavigationBar() {
     },
     {
       name: "Taller",
-      link: "#extras",
-      icon: <Ship className="h-4 w-4" />,
+      link: "#taller",
+      icon: <Wrench className="h-4 w-4" />,
     },
     {
       name: "Datos",

@@ -2,85 +2,177 @@
 
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
-import { Anchor, Ship, Waves, Lightbulb, Clock, Users, Award } from "lucide-react"
+import { Anchor, Ship, Users, MapPin, Wrench, Award } from "lucide-react"
 import { GlowCard } from "./ui/aceternity/glow-card"
 
 const funFacts = [
   {
     icon: Ship,
-    title: "Tipos de Embarcaciones",
-    description: "Existen más de 15 tipos diferentes de embarcaciones tradicionales en la región.",
-    details: "Cada tipo tiene características específicas según su uso: pesca, transporte o recreación.",
-    number: "15+",
-  },
-  {
-    icon: Anchor,
-    title: "Maderas Utilizadas",
-    description: "Se utilizan principalmente cedro, caoba y roble para diferentes partes del barco.",
-    details: "La selección de la madera es crucial para la durabilidad y resistencia de la embarcación.",
-    number: "3",
-  },
-  {
-    icon: Clock,
-    title: "Años de Tradición",
-    description: "Las técnicas de construcción se han transmitido por más de 200 años.",
-    details: "Cada maestro artesano aporta su propio estilo y conocimientos únicos.",
-    number: "200+",
-  },
-  {
-    icon: Waves,
-    title: "Impacto Cultural",
-    description: "La construcción naval es parte fundamental de la identidad cultural costera.",
-    details: "Estas tradiciones conectan a las comunidades con su herencia marítima.",
-    number: "∞",
+    number: "1500+",
+    title: "Embarcaciones no formalizadas",
+    description:
+      "En Perú, existen más de 1500 embarcaciones artesanales que aún no están formalizadas ni cuentan con el sistema de monitoreo satelital Sisesat.",
+    color: "#5FB4A4",
   },
   {
     icon: Users,
-    title: "Maestros Activos",
-    description: "Actualmente hay menos de 50 maestros artesanos activos en la región.",
-    details: "Es urgente preservar su conocimiento antes de que se pierda.",
-    number: "50",
+    number: "15,000",
+    title: "Impacto Cultural",
+    description:
+      "La construcción naval es parte fundamental de la identidad cultural costera. Estas tradiciones conectan a las comunidades con su herencia marítima.",
+    color: "#B6A38C",
+  },
+  {
+    icon: MapPin,
+    number: "3,080",
+    title: "Kilómetros de Costa",
+    description: "Perú cuenta con una extensa costa donde se desarrolla la construcción naval artesanal.",
+    color: "#2F4E5C",
+  },
+  {
+    icon: Wrench,
+    number: "3-8",
+    title: "Tiempo de Construcción",
+    description:
+      "Una embarcación tradicional puede tomar entre 3 a 8 meses en completarse. Dependiendo del tamaño y complejidad del diseño.",
+    color: "#AAB0B6",
+  },
+  {
+    icon: Anchor,
+    number: "500+",
+    title: "Técnicas Ancestrales",
+    description: "Más de 500 años de técnicas tradicionales de construcción naval se mantienen vivas.",
+    color: "#1D8FF5", // Cambiado a azul para mejor visibilidad
   },
   {
     icon: Award,
-    title: "Tiempo de Construcción",
-    description: "Una embarcación tradicional puede tomar entre 3 a 8 meses en completarse.",
-    details: "Dependiendo del tamaño y complejidad del diseño.",
-    number: "3-8",
+    number: "300+",
+    title: "Maestros Artesanos",
+    description: "Más de 300 maestros artesanos mantienen viva la tradición naval en todo el país.",
+    color: "#5FB4A4",
   },
 ]
 
 export default function FunFactsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const factsRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    const section = sectionRef.current
-    const facts = factsRef.current
+    // Wait for DOM to be fully loaded
+    const timer = setTimeout(() => {
+      const section = sectionRef.current
+      const facts = factsRef.current
+      const title = titleRef.current
 
-    if (!section || !facts) return
+      if (!section || !facts || !title) {
+        console.warn("Fun facts elements not found")
+        return
+      }
 
-    // Animate fact cards
-    gsap.fromTo(
-      facts.children,
-      { opacity: 0, y: 50, rotationY: 45 },
-      {
-        opacity: 1,
-        y: 0,
-        rotationY: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: facts,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      },
-    )
+      try {
+        // Check if ScrollTrigger is available
+        if (typeof gsap.registerPlugin === "function" && gsap.ScrollTrigger) {
+          // Animate title
+          gsap.fromTo(
+            title,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              scrollTrigger: {
+                trigger: title,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          )
+
+          // Animate facts cards - check if children exist
+          const factCards = Array.from(facts.children).filter((child) => child instanceof HTMLElement)
+          if (factCards.length > 0) {
+            gsap.fromTo(
+              factCards,
+              { opacity: 0, y: 80, scale: 0.8 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                  trigger: facts,
+                  start: "top 80%",
+                  end: "bottom 20%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            )
+          }
+
+          // Animate numbers - with better error handling
+          const numberElements = facts.querySelectorAll(".fact-number")
+          numberElements.forEach((el) => {
+            if (!(el instanceof HTMLElement)) return
+
+            const element = el as HTMLElement
+            const finalNumber = element.textContent || "0"
+            const numericValue = Number.parseInt(finalNumber.replace(/\D/g, ""))
+
+            if (numericValue > 0 && !isNaN(numericValue)) {
+              const animationObject = { value: 0 }
+
+              gsap.to(animationObject, {
+                value: numericValue,
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 90%",
+                },
+                onUpdate: () => {
+                  const current = Math.round(animationObject.value)
+                  if (finalNumber.includes("+")) {
+                    element.textContent = current.toLocaleString() + "+"
+                  } else if (finalNumber.includes("%")) {
+                    element.textContent = current + "%"
+                  } else if (finalNumber.includes("-")) {
+                    element.textContent = current + "-8" // Para el rango 3-8
+                  } else {
+                    element.textContent = current.toLocaleString()
+                  }
+                },
+              })
+            }
+          })
+        } else {
+          // Fallback without ScrollTrigger
+          gsap.set([title, ...Array.from(facts.children)], { opacity: 1 })
+        }
+      } catch (error) {
+        console.error("Error in fun facts animations:", error)
+        // Fallback: just show elements without animation
+        if (title) gsap.set(title, { opacity: 1 })
+        if (facts) gsap.set(Array.from(facts.children), { opacity: 1 })
+      }
+    }, 100)
+
+    return () => {
+      clearTimeout(timer)
+      // Clean up ScrollTrigger instances
+      if (typeof window !== "undefined" && gsap.ScrollTrigger) {
+        gsap.ScrollTrigger.getAll().forEach((trigger) => {
+          if (trigger.trigger === sectionRef.current) {
+            trigger.kill()
+          }
+        })
+      }
+    }
   }, [])
 
   return (
@@ -91,32 +183,37 @@ export default function FunFactsSection() {
     >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Lightbulb className="w-8 h-8 text-documentary-deep" />
-            <h2 className="text-4xl md:text-5xl font-bold text-documentary-deep">¿Sabías qué?</h2>
-          </div>
+          <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-documentary-deep mb-8 opacity-0">
+            ¿Sabías que...?
+          </h2>
           <p className="text-xl text-documentary-deep/80 max-w-3xl mx-auto">
-            Datos fascinantes sobre la construcción naval artesanal
+            Datos fascinantes sobre la tradición naval artesanal en el Perú
           </p>
         </div>
 
         <div ref={factsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {funFacts.map((fact, index) => (
-            <GlowCard key={index} className="h-full">
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white transition-all duration-300 cursor-pointer group h-full flex flex-col">
-                <div className="mb-4 flex justify-center">
-                  <div className="relative">
-                    <fact.icon className="w-12 h-12 text-documentary-turquoise group-hover:scale-110 transition-transform duration-300" />
-                    <div className="absolute -top-2 -right-2 bg-documentary-deep text-white text-xs font-bold rounded-full w-8 h-8 flex items-center justify-center">
-                      {fact.number}
-                    </div>
+            <GlowCard key={index} className="h-full group opacity-0">
+              <div className="text-center p-6 h-full flex flex-col justify-between bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-all duration-300">
+                <div>
+                  <div
+                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundColor: fact.color }}
+                  >
+                    <fact.icon className="w-8 h-8 text-white" />
                   </div>
+
+                  <div
+                    className="fact-number text-4xl md:text-5xl font-bold mb-4 transition-colors duration-300"
+                    style={{ color: fact.color }}
+                  >
+                    {fact.number}
+                  </div>
+
+                  <h3 className="text-xl font-semibold text-documentary-deep mb-4">{fact.title}</h3>
                 </div>
-                <h3 className="text-xl font-bold text-documentary-deep mb-3">{fact.title}</h3>
-                <p className="text-documentary-deep/80 mb-4 flex-grow">{fact.description}</p>
-                <p className="text-documentary-deep/60 text-sm border-t border-documentary-stone/30 pt-4">
-                  {fact.details}
-                </p>
+
+                <p className="text-documentary-deep/80 leading-relaxed">{fact.description}</p>
               </div>
             </GlowCard>
           ))}

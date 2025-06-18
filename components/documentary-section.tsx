@@ -2,46 +2,37 @@
 
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
-import { Play, X, Info } from "lucide-react"
+import { Play, X, Info, BarChart3 } from "lucide-react"
 import Image from "next/image"
 import { DraggableCard } from "./ui/aceternity/draggable-card"
 
 const interactivePoints = [
   {
-    id: "paint",
+    id: "documentary",
     x: "45%",
-    y: "30%",
-    title: "Pintura Tradicional",
-    description: "Las técnicas de pintura utilizadas han sido transmitidas de generación en generación.",
-    action: "documentary",
-    color: "bg-gradient-to-r from-documentary-turquoise to-documentary-wood",
-  },
-  {
-    id: "wood",
-    x: "25%",
-    y: "60%",
-    title: "Madera Noble",
-    description: "Se utiliza madera de cedro y caoba, seleccionada cuidadosamente por su resistencia.",
-    action: "info",
-    color: "bg-gradient-to-r from-documentary-wood to-documentary-stone",
-  },
-  {
-    id: "tools",
-    x: "70%",
-    y: "50%",
-    title: "Herramientas Artesanales",
-    description: "Cada herramienta tiene una función específica y muchas son hechas a mano.",
-    action: "info",
-    color: "bg-gradient-to-r from-documentary-stone to-documentary-sand",
-  },
-  {
-    id: "bow",
-    x: "80%",
     y: "25%",
-    title: "Proa del Barco",
-    description: "La forma de la proa determina la velocidad y estabilidad de la embarcación.",
-    action: "info",
-    color: "bg-gradient-to-r from-documentary-sand to-documentary-turquoise",
+    title: "Ver Documental",
+    description: "Reproduce el documental completo",
+    action: "documentary",
+    color: "#5FB4A4",
+  },
+  {
+    id: "cover",
+    x: "25%",
+    y: "60%", // Subido más - de 65% a 60%
+    title: "Portada del Documental",
+    description: "Ver la portada oficial del documental",
+    action: "cover",
+    color: "#B6A38C",
+  },
+  {
+    id: "statistics",
+    x: "75%",
+    y: "35%",
+    title: "Tiempo de Construcción",
+    description: "Estadísticas sobre la construcción artesanal",
+    action: "statistics",
+    color: "#2F4E5C",
   },
 ]
 
@@ -49,9 +40,10 @@ export default function DocumentarySection() {
   const sectionRef = useRef<HTMLElement>(null)
   const boatRef = useRef<HTMLDivElement>(null)
   const [showDocumentary, setShowDocumentary] = useState(false)
-  const [showInfo, setShowInfo] = useState<{ show: boolean; point: (typeof interactivePoints)[0] | null }>({
+  const [showModal, setShowModal] = useState<{ show: boolean; type: string; data: any }>({
     show: false,
-    point: null,
+    type: "",
+    data: null,
   })
   const [pointsReady, setPointsReady] = useState(false)
 
@@ -112,13 +104,32 @@ export default function DocumentarySection() {
   }, [pointsReady])
 
   const handlePointClick = (point: (typeof interactivePoints)[0]) => {
-    if (!pointsReady) return // Prevent clicks before animation completes
+    if (!pointsReady) return
 
     if (point.action === "documentary") {
       setShowDocumentary(true)
       document.body.style.overflow = "hidden"
-    } else {
-      setShowInfo({ show: true, point })
+    } else if (point.action === "statistics") {
+      setShowModal({
+        show: true,
+        type: "statistics",
+        data: {
+          title: "Tiempo de Construcción Artesanal",
+          content:
+            "El tiempo para construir un barco artesanal varía considerablemente según el tamaño, diseño y materiales utilizados. No hay un plazo fijo, pero puede tomar desde 4-6 meses hasta un año o más.",
+          image: "/gallery/kike-construction.jpg",
+        },
+      })
+    } else if (point.action === "cover") {
+      setShowModal({
+        show: true,
+        type: "cover",
+        data: {
+          title: "Portada del Documental",
+          content: "Portada oficial del documental 'Donde nacen los barcos'",
+          image: "/placeholder.svg?height=600&width=400",
+        },
+      })
     }
   }
 
@@ -127,8 +138,8 @@ export default function DocumentarySection() {
     document.body.style.overflow = "auto"
   }
 
-  const closeInfo = () => {
-    setShowInfo({ show: false, point: null })
+  const closeModal = () => {
+    setShowModal({ show: false, type: "", data: null })
   }
 
   return (
@@ -165,14 +176,20 @@ export default function DocumentarySection() {
             {interactivePoints.map((point) => (
               <button
                 key={point.id}
-                className={`interactive-point absolute w-8 h-8 md:w-10 md:h-10 ${point.color} rounded-full border-3 border-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex items-center justify-center group ${
+                className={`interactive-point absolute w-8 h-8 md:w-10 md:h-10 rounded-full border-3 border-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex items-center justify-center group ${
                   !pointsReady ? "pointer-events-none" : ""
                 }`}
-                style={{ left: point.x, top: point.y }}
+                style={{
+                  left: point.x,
+                  top: point.y,
+                  backgroundColor: point.color,
+                }}
                 onClick={() => handlePointClick(point)}
               >
                 {point.action === "documentary" ? (
                   <Play className="w-3 h-3 md:w-4 md:h-4 text-white ml-0.5" />
+                ) : point.action === "statistics" ? (
+                  <BarChart3 className="w-3 h-3 md:w-4 md:h-4 text-white" />
                 ) : (
                   <Info className="w-3 h-3 md:w-4 md:h-4 text-white" />
                 )}
@@ -200,7 +217,7 @@ export default function DocumentarySection() {
               },
               {
                 title: "Podcast",
-                description: "Conversaciones con los artesanos",
+                description: "Kike nos cuenta su experiencia con el documental",
                 gradient: "from-documentary-stone to-documentary-deep",
               },
             ].map((item, index) => (
@@ -233,7 +250,7 @@ export default function DocumentarySection() {
           <div className="w-full h-full max-w-6xl max-h-[80vh] mx-4">
             <iframe
               src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="Documental Artesanos del Mar"
+              title="Documental Donde nacen los barcos"
               className="w-full h-full rounded-lg"
               allowFullScreen
             />
@@ -242,16 +259,29 @@ export default function DocumentarySection() {
       )}
 
       {/* Info Modal */}
-      {showInfo.show && showInfo.point && (
+      {showModal.show && showModal.data && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl">
+          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
             <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-bold text-gray-800">{showInfo.point.title}</h3>
-              <button onClick={closeInfo} className="text-gray-500 hover:text-gray-700 transition-colors">
+              <h3 className="text-2xl font-bold text-gray-800">{showModal.data.title}</h3>
+              <button onClick={closeModal} className="text-gray-500 hover:text-gray-700 transition-colors">
                 <X size={24} />
               </button>
             </div>
-            <p className="text-gray-600 leading-relaxed">{showInfo.point.description}</p>
+
+            {showModal.data.image && (
+              <div className="mb-4">
+                <Image
+                  src={showModal.data.image || "/placeholder.svg"}
+                  alt={showModal.data.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            )}
+
+            <p className="text-gray-600 leading-relaxed">{showModal.data.content}</p>
           </div>
         </div>
       )}

@@ -3,48 +3,47 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import Image from "next/image"
-import { GlowCard } from "./ui/aceternity/glow-card"
 
 const teamMembers = [
   {
-    name: "Productor",
-    role: "Producción Ejecutiva",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Natalia Escalante",
+    role: "Productora",
+    image: "/team/productora.jpg",
   },
   {
-    name: "Director",
-    role: "Dirección",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Sebastian Noriega",
+    role: "Director",
+    image: "/team/director.jpg",
   },
   {
-    name: "Camarógrafo",
-    role: "Dirección de Fotografía",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Camilo Barbarán",
+    role: "Director de Fotografía",
+    image: "/team/director-fotografia.jpg",
   },
   {
-    name: "Editor",
-    role: "Postproducción",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Carlos Talavera",
+    role: "Camarógrafo 1",
+    image: "/team/camarografo1.jpg",
   },
   {
-    name: "Sonidista",
-    role: "Diseño de Sonido",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Samantha Zapata",
+    role: "Camarográfa 2",
+    image: "/team/camarografo2.jpg",
   },
   {
-    name: "Asistente",
-    role: "Asistencia de Dirección",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Maggie Benner",
+    role: "Asistente de investigación",
+    image: "/team/asistente.jpg",
   },
   {
-    name: "Magui",
-    role: "Coordinación",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Miguel Tarrillo",
+    role: "Editor",
+    image: "/team/editor.jpg",
   },
   {
-    name: "Nat",
-    role: "Producción",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "Haziel Advíncula",
+    role: "Sonidista",
+    image: "/team/sonidista.jpg",
   },
 ]
 
@@ -118,93 +117,147 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <section
-      id="nosotros"
-      ref={sectionRef}
-      className="min-h-screen bg-gradient-to-b from-documentary-turquoise to-documentary-wood py-20 -mt-1"
-    >
-      <div className="container mx-auto px-6">
-        {/* Introduction */}
-        <div className="text-center mb-16">
-          <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-white mb-8">
-            Nosotros
-          </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Somos un equipo apasionado por contar historias que preserven las tradiciones y el conocimiento ancestral de
-            nuestros artesanos navales.
-          </p>
-        </div>
+    <>
+      <section
+        id="nosotros"
+        ref={sectionRef}
+        className="min-h-screen py-12 sm:py-16 md:py-20 -mt-1 relative"
+        style={{
+          backgroundImage: `url('/conocenos-background.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-documentary-turquoise/80 via-documentary-turquoise/70 to-documentary-wood/80" />
 
-        {/* Team Members */}
-        <div ref={teamRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {teamMembers.map((member, index) => (
-            <GlowCard key={index} className="h-full">
-              <div className="text-center group cursor-pointer h-full">
-                <div className="relative mb-4 overflow-hidden rounded-full mx-auto w-48 h-48">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          {/* Introduction */}
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 ref={titleRef} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 sm:mb-8">
+              ¡Conócenos!
+            </h2>
+            <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed px-4">
+              En Dalhí Studios, somos apasionados por contar historias que preservan las tradiciones y el conocimiento
+              ancestral de nuestros artesanos navales.
+            </p>
+          </div>
+
+          {/* Team Members */}
+          <div ref={teamRef} className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-16 sm:mb-20 max-w-7xl mx-auto">
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="group relative bg-white/15 backdrop-blur-md rounded-2xl p-6 hover:bg-white/25 transition-all duration-300 transform hover:scale-105 border border-white/30 shadow-xl w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)] xl:w-[calc(25%-1.5rem)] min-w-[280px] max-w-[320px] glow-card"
+                style={{
+                  background:
+                    "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(91, 180, 164, 0.15) 0%, transparent 50%)",
+                }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const x = ((e.clientX - rect.left) / rect.width) * 100
+                  const y = ((e.clientY - rect.top) / rect.height) * 100
+                  e.currentTarget.style.setProperty("--mouse-x", `${x}%`)
+                  e.currentTarget.style.setProperty("--mouse-y", `${y}%`)
+                }}
+              >
+                <div className="text-center">
+                  {/* Photo with better aspect ratio */}
+                  <div className="relative mb-6 overflow-hidden rounded-xl mx-auto w-full aspect-[4/5] max-w-[200px] shadow-lg">
+                    <Image
+                      src={member.image || "/placeholder.svg"}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{member.name}</h3>
+                  <p className="text-sm sm:text-base text-white/90 font-medium">{member.role}</p>
+
+                  {/* Maritime decoration line */}
+                  <div className="mt-4 flex justify-center">
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission and Vision - Separate full-screen section */}
+      <section
+        ref={missionRef}
+        className="min-h-screen relative flex items-center"
+        style={{
+          backgroundImage: `url('/mission-vision-background.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Background overlay for mission section */}
+        <div className="absolute inset-0 bg-gradient-to-r from-documentary-deep/90 via-documentary-deep/70 to-documentary-deep/50" />
+
+        <div className="relative z-10 container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Nuestra Misión</h3>
+              <p className="text-white/90 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
+                Preservar y documentar el arte milenario de la construcción naval artesanal, capturando no solo las
+                técnicas ancestrales, sino también las historias, la pasión y el conocimiento de los maestros artesanos
+                que mantienen viva esta tradición en nuestras costas.
+              </p>
+
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Nuestra Visión</h3>
+              <p className="text-white/90 text-base sm:text-lg leading-relaxed">
+                Crear un puente generacional que conecte el pasado con el presente, asegurando que estas técnicas
+                ancestrales y el conocimiento de nuestros artesanos navales trascienda el tiempo y inspire a las futuras
+                generaciones a valorar y preservar nuestro patrimonio marítimo.
+              </p>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="aspect-square relative overflow-hidden rounded-lg shadow-lg">
                   <Image
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
+                    src="/team/photographer.jpg"
+                    alt="Fotógrafo documentando el proceso"
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{member.name}</h3>
-                <p className="text-white/80">{member.role}</p>
+                <div className="aspect-square relative overflow-hidden rounded-lg shadow-lg">
+                  <Image
+                    src="/team/interview-subject.jpg"
+                    alt="Entrevista con participante"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg shadow-lg">
+                  <Image
+                    src="/team/interviewee.jpg"
+                    alt="Artesano compartiendo conocimiento"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg shadow-lg">
+                  <Image
+                    src="/team/filming-crew.jpg"
+                    alt="Equipo de grabación trabajando"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
               </div>
-            </GlowCard>
-          ))}
-        </div>
-
-        {/* Mission and Vision */}
-        <div ref={missionRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-3xl font-bold text-documentary-deep mb-6">Nuestra Misión</h3>
-            <p className="text-documentary-deep/90 text-lg leading-relaxed mb-8">
-              Preservar y documentar el arte milenario de la construcción naval artesanal, capturando no solo las
-              técnicas ancestrales, sino también las historias, la pasión y el conocimiento de los maestros artesanos
-              que mantienen viva esta tradición en nuestras costas.
-            </p>
-
-            <h3 className="text-3xl font-bold text-documentary-deep mb-6">Nuestra Visión</h3>
-            <p className="text-documentary-deep/90 text-lg leading-relaxed">
-              Crear un puente generacional que conecte el pasado con el presente, asegurando que estas técnicas
-              ancestrales y el conocimiento de nuestros artesanos navales trascienda el tiempo y inspire a las futuras
-              generaciones a valorar y preservar nuestro patrimonio marítimo.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/team/photographer.jpg"
-              alt="Fotógrafo documentando el proceso"
-              width={200}
-              height={200}
-              className="rounded-lg shadow-lg"
-            />
-            <Image
-              src="/team/interview-subject.jpg"
-              alt="Entrevista con participante"
-              width={200}
-              height={200}
-              className="rounded-lg shadow-lg"
-            />
-            <Image
-              src="/team/interviewee.jpg"
-              alt="Artesano compartiendo conocimiento"
-              width={200}
-              height={200}
-              className="rounded-lg shadow-lg"
-            />
-            <Image
-              src="/team/filming-crew.jpg"
-              alt="Equipo de grabación trabajando"
-              width={200}
-              height={200}
-              className="rounded-lg shadow-lg"
-            />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
