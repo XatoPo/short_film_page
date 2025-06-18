@@ -31,9 +31,28 @@ export function useImagePreloader({ images, onProgress }: UseImagePreloaderProps
 
     // Crear nueva promesa de carga
     const loadPromise = new Promise<void>((resolve) => {
+      // Skip placeholder SVGs - load instantly
+      if (src.includes("placeholder.svg")) {
+        imageCache.add(src)
+        setLoadedImages((prev) => new Set([...prev, src]))
+        loadingPromises.delete(src)
+        resolve()
+        return
+      }
+
       const img = new Image()
 
+      // Set timeout for slow images
+      const timeout = setTimeout(() => {
+        console.warn(`Image timeout: ${src}`)
+        imageCache.add(src)
+        setLoadedImages((prev) => new Set([...prev, src]))
+        loadingPromises.delete(src)
+        resolve()
+      }, 3000) // 3 second timeout per image
+
       const handleLoad = () => {
+        clearTimeout(timeout)
         imageCache.add(src)
         setLoadedImages((prev) => new Set([...prev, src]))
         loadingPromises.delete(src)
@@ -41,6 +60,7 @@ export function useImagePreloader({ images, onProgress }: UseImagePreloaderProps
       }
 
       const handleError = () => {
+        clearTimeout(timeout)
         console.warn(`Failed to load image: ${src}`)
         // Aún así marcamos como "cargada" para evitar intentos infinitos
         imageCache.add(src)
@@ -104,7 +124,7 @@ export function useImagePreloader({ images, onProgress }: UseImagePreloaderProps
     const loadAllImages = async () => {
       try {
         // Cargar imágenes en lotes para mejor performance
-        const batchSize = 5
+        const batchSize = 3 // Reducido para evitar saturar
         for (let i = 0; i < uncachedImages.length; i += batchSize) {
           const batch = uncachedImages.slice(i, i + batchSize)
 
@@ -121,7 +141,10 @@ export function useImagePreloader({ images, onProgress }: UseImagePreloaderProps
       } catch (error) {
         console.error("Error loading images:", error)
       } finally {
+        // Asegurar que llegue al 100%
+        setProgress(100)
         setIsLoading(false)
+        onProgress?.(totalImages, totalImages)
       }
     }
 
