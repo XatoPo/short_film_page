@@ -23,7 +23,7 @@ const characters = [
     id: "ricardo",
     name: "Ricardo Rueda",
     title: "Dueño artesano",
-    image: "/ricardo-portrait.jpg", // Foto real de Ricardo
+    image: "/characters/ricardo-portrait.jpg", // Foto real de Ricardo
     biography:
       "Ricardo es dueño de su propio taller artesanal y comparte su conocimiento sobre construcción y mantenimiento de embarcaciones con las nuevas generaciones.",
     hasWebsodio: true,
@@ -50,7 +50,7 @@ const characters = [
     id: "brando",
     name: "Lic. Brando Tarrillo",
     title: "Abogado",
-    image: "/placeholder.svg?height=300&width=300", // Se actualizará con nueva foto
+    image: "/characters/brando.jpg", // Se actualizará con nueva foto
     biography:
       "Brando Tarrillo es el abogado y uno de nuestros especialistas involucrados en nuestro documental. Su aporte nos hace entender un poco más sobre las normas y ayudas legales que estos artesanos requieren para ser el sustento de sus familias.",
     hasWebsodio: false,

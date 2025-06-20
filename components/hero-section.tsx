@@ -101,7 +101,7 @@ export default function HeroSection() {
             alt="Logo Documental - Donde nacen los barcos"
             width={120}
             height={120}
-            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain"
             priority
           />
         </div>
