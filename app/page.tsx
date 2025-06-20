@@ -44,9 +44,9 @@ export default function Home() {
 
       // Characters section
       "/characters/kike.jpg",
-      "/ricardo-portrait.jpg",
+      "/characters/ricardo-portrait.jpg",
       "/characters/david.jpg",
-      "/placeholder.svg?height=300&width=300", // Brando
+      "/characters/brando.jpg", // Brando
       "/placeholder.svg?height=300&width=300", // Mia
       "/characters-background.jpg",
 
