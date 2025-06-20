@@ -96,12 +96,20 @@ export default function HeroSection() {
 
         {/* Productora Logo - Right */}
         <div className="flex items-center">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
-            <span className="text-white text-xs sm:text-sm font-bold text-center">
-              DALHÍ
-              <br />
-              STUDIOS
-            </span>
+          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-white rounded-full flex items-center justify-center shadow-lg relative">
+            <Image
+              src="/dhali-logo.png"
+              alt="Dhali Studios Logo"
+              width={40}
+              height={40}
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+            />
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <span className="text-black text-[6px] sm:text-[8px] md:text-[10px] font-bold whitespace-nowrap">
+                DHALI
+                STUDIOS
+              </span>
+            </div>
           </div>
         </div>
       </div>

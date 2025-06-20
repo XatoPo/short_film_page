@@ -139,7 +139,7 @@ export default function AboutSection() {
               ¡Conócenos!
             </h2>
             <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed px-4">
-              En Dalhí Studios, somos apasionados por contar historias que preservan las tradiciones y el conocimiento
+              En Dhali Studios, somos apasionados por contar historias que preservan las tradiciones y el conocimiento
               ancestral de nuestros artesanos navales.
             </p>
           </div>
@@ -190,7 +190,7 @@ export default function AboutSection() {
       {/* Mission and Vision - Separate full-screen section */}
       <section
         ref={missionRef}
-        className="min-h-screen relative flex items-center"
+        className="min-h-screen relative flex items-center py-16 sm:py-20"
         style={{
           backgroundImage: `url('/mission-vision-background.jpg')`,
           backgroundSize: "cover",
@@ -201,18 +201,18 @@ export default function AboutSection() {
         {/* Background overlay for mission section */}
         <div className="absolute inset-0 bg-gradient-to-r from-documentary-deep/90 via-documentary-deep/70 to-documentary-deep/50" />
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
             <div className="order-2 lg:order-1">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Nuestra Misión</h3>
-              <p className="text-white/90 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 sm:mb-8">Misión</h3>
+              <p className="text-white/90 text-lg sm:text-xl leading-relaxed mb-8 sm:mb-12">
                 Preservar y documentar el arte milenario de la construcción naval artesanal, capturando no solo las
                 técnicas ancestrales, sino también las historias, la pasión y el conocimiento de los maestros artesanos
                 que mantienen viva esta tradición en nuestras costas.
               </p>
 
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Nuestra Visión</h3>
-              <p className="text-white/90 text-base sm:text-lg leading-relaxed">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 sm:mb-8">Visión</h3>
+              <p className="text-white/90 text-lg sm:text-xl leading-relaxed">
                 Crear un puente generacional que conecte el pasado con el presente, asegurando que estas técnicas
                 ancestrales y el conocimiento de nuestros artesanos navales trascienda el tiempo y inspire a las futuras
                 generaciones a valorar y preservar nuestro patrimonio marítimo.
@@ -220,7 +220,7 @@ export default function AboutSection() {
             </div>
 
             <div className="order-1 lg:order-2">
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
                 <div className="aspect-square relative overflow-hidden rounded-lg shadow-lg">
                   <Image
                     src="/team/photographer.jpg"

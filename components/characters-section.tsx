@@ -54,7 +54,7 @@ const characters = [
     biography:
       "Brando Tarrillo es el abogado y uno de nuestros especialistas involucrados en nuestro documental. Su aporte nos hace entender un poco más sobre las normas y ayudas legales que estos artesanos requieren para ser el sustento de sus familias.",
     hasWebsodio: false,
-    achievements: ["Especialista en Derecho Marítimo y Pesquero", "Asesor legal en formalización de embarcaciones"],
+    achievements: ["Colegiado en Colegio de Abogados del Callao", "Número de colegiatura: 9869"],
     color: "#AAB0B6", // Gris piedra
   },
   {
