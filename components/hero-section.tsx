@@ -100,11 +100,11 @@ export default function HeroSection() {
             <Image
               src="/dhali-logo.png"
               alt="Dhali Studios Logo"
-              width={40}
-              height={40}
+              width={45}
+              height={45}
               className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
             />
-            <div className="absolute left-1/2 transform -translate-x-1/2">
+            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-black text-[6px] sm:text-[8px] md:text-[10px] font-bold whitespace-nowrap">
               <span className="text-black text-[6px] sm:text-[8px] md:text-[10px] font-bold whitespace-nowrap">
                 DHALI
                 STUDIOS

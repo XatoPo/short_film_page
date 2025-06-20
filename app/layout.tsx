@@ -3,12 +3,11 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Short Film",
-  description: "Documentary about the making of a short film",
-  keywords: ["short film", "documentary", "making of", "behind the scenes"],
-  authors: [{ name: "Your Name", url: "https://yourwebsite.com" }],
+  title: "Donde nacen los barcos",
+  description: "Documental sobre la tradición en la construcción naval tradicional en el Perú.",
+  keywords: ["short film", "documentary", "Peru", "traditional shipbuilding", "naval tradition"],
+  authors: [{ name: "Flavio Villanueva", url: "https://shortfilmpage.netlify.app/" }],
   creator: "Flavio Villanueva",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
