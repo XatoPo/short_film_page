@@ -28,6 +28,7 @@ export default function Home() {
       // Hero section
       "/team-photo.jpg",
       "/logo-documental.png",
+      "/logo-dhali.png",
       "/hero-background.jpg",
 
       // About section - team photos
