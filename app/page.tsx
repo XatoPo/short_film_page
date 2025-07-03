@@ -48,7 +48,7 @@ export default function Home() {
       "/characters/ricardo-portrait.jpg",
       "/characters/david.jpg",
       "/characters/brando.jpg", // Brando
-      "/placeholder.svg?height=300&width=300", // Mia
+      "/characters/mia.jpg",
       "/characters-background.jpg",
 
       // Documentary section

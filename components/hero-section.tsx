@@ -121,25 +121,25 @@ export default function HeroSection() {
       {/* Social Media Icons - Bottom Left */}
       <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-6 md:left-8 z-20 flex flex-col sm:flex-row gap-3 sm:gap-4">
         <a
-          href="#"
+          href="https://www.facebook.com/share/19P8LTKURW/"
           className="group p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
         >
           <Facebook className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-documentary-turquoise transition-colors" />
         </a>
         <a
-          href="#"
+          href="https://www.instagram.com/dondenacenlosbarcos?igsh=MTZvcTNjeDh5NnN5ag=="
           className="group p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
         >
           <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-documentary-turquoise transition-colors" />
         </a>
         <a
-          href="#"
+          href="https://www.tiktok.com/@dondenacenlosbarcos?_t=ZM-8xIZMjs3WKu&_r=1"
           className="group p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
         >
           <TikTokIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-documentary-turquoise transition-colors" />
         </a>
         <a
-          href="#"
+          href="https://www.youtube.com/@dondenacenlosbarcos"
           className="group p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
         >
           <Youtube className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-documentary-turquoise transition-colors" />

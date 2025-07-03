@@ -127,7 +127,7 @@ export default function DocumentarySection() {
         data: {
           title: "Portada del Documental",
           content: "Portada oficial del documental 'Donde nacen los barcos'",
-          image: "/placeholder.svg?height=600&width=400",
+          image: "/portada-documental.jpg",
         },
       })
     }
@@ -249,7 +249,7 @@ export default function DocumentarySection() {
 
           <div className="w-full h-full max-w-6xl max-h-[80vh] mx-4">
             <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              src="https://youtube.com/@dondenacenlosbarcos?si=-zDAjwByOONEuad9"
               title="Documental Donde nacen los barcos"
               className="w-full h-full rounded-lg"
               allowFullScreen
