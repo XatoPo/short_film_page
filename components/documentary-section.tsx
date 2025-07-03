@@ -176,9 +176,8 @@ export default function DocumentarySection() {
             {interactivePoints.map((point) => (
               <button
                 key={point.id}
-                className={`interactive-point absolute w-8 h-8 md:w-10 md:h-10 rounded-full border-3 border-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex items-center justify-center group ${
-                  !pointsReady ? "pointer-events-none" : ""
-                }`}
+                className={`interactive-point absolute w-8 h-8 md:w-10 md:h-10 rounded-full border-3 border-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex items-center justify-center group ${!pointsReady ? "pointer-events-none" : ""
+                  }`}
                 style={{
                   left: point.x,
                   top: point.y,
@@ -203,22 +202,26 @@ export default function DocumentarySection() {
           </div>
 
           {/* Making Of Section */}
+          {/* Making Of Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 title: "Making Of",
                 description: "Detrás de cámaras del documental",
                 gradient: "from-documentary-turquoise to-documentary-wood",
+                link: "https://youtu.be/AkHCx5vHjzk",
               },
               {
-                title: "Entrevista",
-                description: "Director y productora hablan del proyecto",
+                title: "Trailer",
+                description: "Una vista previa del documental",
                 gradient: "from-documentary-wood to-documentary-stone",
+                link: "https://youtu.be/6LuwadpIrPE",
               },
               {
                 title: "Podcast",
                 description: "Kike nos cuenta su experiencia con el documental",
                 gradient: "from-documentary-stone to-documentary-deep",
+                link: "https://soundcloud.com/dhali-studios/podcastkike?si=7c4e218b1d7043adace4f80c3eedbd7b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
               },
             ].map((item, index) => (
               <DraggableCard key={index} className="w-full">
@@ -226,9 +229,18 @@ export default function DocumentarySection() {
                   className={`text-center bg-gradient-to-br ${item.gradient} backdrop-blur-sm rounded-xl p-4 md:p-6 h-full shadow-xl hover:shadow-2xl transition-all duration-300`}
                 >
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">{item.title}</h3>
-                  <div className="aspect-video bg-black/20 rounded-lg mb-3 md:mb-4 flex items-center justify-center hover:bg-black/30 transition-colors cursor-pointer">
-                    <Play className="text-white w-8 h-8 md:w-12 md:h-12" />
-                  </div>
+
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="aspect-video bg-black/20 rounded-lg mb-3 md:mb-4 flex items-center justify-center hover:bg-black/30 transition-colors cursor-pointer">
+                      <Play className="text-white w-8 h-8 md:w-12 md:h-12" />
+                    </div>
+                  </a>
+
                   <p className="text-white/90 text-sm md:text-base">{item.description}</p>
                 </div>
               </DraggableCard>
