@@ -61,7 +61,7 @@ const characters = [
     id: "mia",
     name: "Mia Mingo",
     title: "Economista",
-    image: "/placeholder.svg?height=300&width=300", // Se actualizará con nueva foto
+    image: "/characters/mia.jpg", // Se actualizará con nueva foto
     biography:
       "Mia es nuestra segunda especialista que nos acompaña en este documental. Ella nos da sus grandes aportes y nos adentra al tema desde un punto crítico como lo es el económico. Nos dará sus puntos de vistas y como estos artesanos navales son un hilo conductor a la sostenibilidad de Pucusana, ya que los pescadores dependen de sus barcos y sin barcos, no existiría pesca.",
     hasWebsodio: false,
