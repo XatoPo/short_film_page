@@ -42,7 +42,7 @@ const characters = [
     biography:
       "David Carrillo es un pintor artesano con más de 5 años de experiencia. Al principio su vocación era la de un pintor normal, pero decidió tomar el siguiente paso y empezar con la pintura artesana naval. Ahí, se encarga de proteger y embellecer embarcaciones a través de la aplicación de pintura y otros recubrimientos.",
     hasWebsodio: true,
-    websodioUrl: "https://www.youtube.com/watch?v=-WR800JF__Q&t=2s",
+    websodioUrl: "https://www.youtube.com/embed/-WR800JF__Q?si=7cxnl-VgoIJpHTaU",
     achievements: ["Pintor profesional", "Más de 5 años de experiencias pintando y decorando barcos artesanales"],
     color: "#2F4E5C", // Azul profundo
   },
