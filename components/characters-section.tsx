@@ -15,7 +15,7 @@ const characters = [
     biography:
       "Enrique es un maestro artesano con más de 15 años de experiencia en la construcción de embarcaciones tradicionales. Su taller es un santuario donde se preservan técnicas ancestrales.",
     hasWebsodio: true,
-    websodioUrl: "https://www.youtube.com/watch?v=d3cgemSclN4",
+    websodioUrl: "https://www.youtube.com/embed/d3cgemSclN4?si=eHcg1g7577vR2KXi",
     achievements: ["Maestro artesano de su propio taller", "15 años de experiencia en este arte"],
     color: "#5FB4A4", // Turquesa suave
   },
@@ -42,7 +42,7 @@ const characters = [
     biography:
       "David Carrillo es un pintor artesano con más de 5 años de experiencia. Al principio su vocación era la de un pintor normal, pero decidió tomar el siguiente paso y empezar con la pintura artesana naval. Ahí, se encarga de proteger y embellecer embarcaciones a través de la aplicación de pintura y otros recubrimientos.",
     hasWebsodio: true,
-    websodioUrl: "https://www.youtube.com/watch?v=-WR800JF__Q",
+    websodioUrl: "https://www.youtube.com/watch?v=-WR800JF__Q&t=2s",
     achievements: ["Pintor profesional", "Más de 5 años de experiencias pintando y decorando barcos artesanales"],
     color: "#2F4E5C", // Azul profundo
   },
