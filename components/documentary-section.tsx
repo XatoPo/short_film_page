@@ -209,13 +209,13 @@ export default function DocumentarySection() {
                 title: "Making Of",
                 description: "Detrás de cámaras del documental",
                 gradient: "from-documentary-turquoise to-documentary-wood",
-                link: "https://youtu.be/AkHCx5vHjzk",
+                link: "https://youtu.be/HliA1zOspn0?si=mOqsugE2LxTzzFrK",
               },
               {
                 title: "Trailer",
                 description: "Una vista previa del documental",
                 gradient: "from-documentary-wood to-documentary-stone",
-                link: "https://youtu.be/6LuwadpIrPE",
+                link: "https://youtu.be/i0w4_GeGBd8?si=O1FXxStxlFKZkMnZ",
               },
               {
                 title: "Podcast",
@@ -261,7 +261,7 @@ export default function DocumentarySection() {
 
           <div className="w-full h-full max-w-6xl max-h-[80vh] mx-4">
             <iframe
-              src="https://youtube.com/@dondenacenlosbarcos?si=-zDAjwByOONEuad9"
+              src="https://youtu.be/KuhUg0bPQt4?si=euR7TovDEA6tF_YC"
               title="Documental Donde nacen los barcos"
               className="w-full h-full rounded-lg"
               allowFullScreen
