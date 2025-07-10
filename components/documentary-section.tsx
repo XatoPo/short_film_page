@@ -261,7 +261,7 @@ export default function DocumentarySection() {
 
           <div className="w-full h-full max-w-6xl max-h-[80vh] mx-4">
             <iframe
-              src="https://youtu.be/KuhUg0bPQt4?si=euR7TovDEA6tF_YC"
+              src="https://www.youtube.com/embed/KuhUg0bPQt4"
               title="Documental Donde nacen los barcos"
               className="w-full h-full rounded-lg"
               allowFullScreen
